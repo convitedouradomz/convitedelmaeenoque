@@ -1515,9 +1515,9 @@ footer {
         <p class="data-casamento">08 · AGOSTO · 2026</p>
 
         <!-- FRASE ROMÂNTICA -->
-       <p class="frase-romantica">
-  "O amor é a ponte que une dois corações em uma só alma."<br />
-  - Provérbio Africano
+<p class="frase-romantica">
+  "Acima de tudo, porém, revistam-se do amor, que é o vínculo da perfeição."<br />
+  - Colossenses 3:14
 </p>
       </div>
 
@@ -1679,18 +1679,19 @@ footer {
             <h3 class="nome-noivo">Delma Eugénio Mangue</h3>
 <p class="pais-noivo">
   <i class="fas fa-users"></i>
-  Filha de Eugénio Mangue e Lucrécia Simão Nharave
+  Filha de Eugénio Mangue e Lucrécia Simão Nharave(em memória)
 </p>
 <p class="bio-noivo">
   <i
     class="fas fa-heart"
     style="color: var(--dourado); margin-right: 10px"
   ></i>
-  Uma mulher de fé, carismática e de sorriso contagiante. Delma é conhecida pela sua alegria contagiante e pelo amor incondicional que dedica à família e amigos. A sua presença ilumina qualquer ambiente e o seu coração generoso toca a vida de todos os que a rodeiam.
+  Uma mulher de fé, de caráter firme e de coração generoso. Delma é reconhecida pela sua determinação, responsabilidade e dedicação em tudo o que faz. Profissional comprometida com a excelência, procura realizar cada tarefa com cuidado e atenção aos detalhes. Na família e entre os amigos, destaca-se pelo amor, lealdade e pela forma genuína como cuida daqueles que a rodeiam.
 </p>
 <div style="margin-top: 20px; color: var(--marrom-claro)">
   <i class="fas fa-quote-left" style="color: var(--dourado)"></i>
-  "O amor é a força que move o mundo."
+  "O amor é paciente, o amor é bondoso... Tudo sofre, tudo crê, tudo espera, tudo suporta. O amor jamais acaba."
+  — 1 Coríntios 13:4, 7–8
   <i class="fas fa-quote-right" style="color: var(--dourado)"></i>
 </div>
             </div>
@@ -1765,7 +1766,7 @@ footer {
 
             <p class="info-convite">
               <i class="fas fa-info-circle" style="margin-right: 8px"></i>
-              Convite válido para 2 pessoas
+             Contamos com a sua presença.
             </p>
           </div>
         </div>
@@ -3323,6 +3324,45 @@ footer {
         botaoTopo.addEventListener("click", function () {
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
+      }
+
+      // ========== CONFIRMAÇÃO DE PRESENÇA (RSVP) ==========
+      function configurarConfirmacaoPresenca() {
+        const numeroWhatsapp = "258842109579"; // Número que recebe as confirmações
+        const nomeInput = document.getElementById("nome-convidado");
+        const btnSabado = document.getElementById("btnWhatsappSabado");
+        const btnDomingo = document.getElementById("btnWhatsappDomingo");
+
+        function enviarConfirmacao(dia) {
+          const nome = nomeInput ? nomeInput.value.trim() : "";
+
+          if (!nome) {
+            alert("Por favor, escreva o seu nome completo antes de confirmar.");
+            if (nomeInput) nomeInput.focus();
+            return;
+          }
+
+          const textoCompleto = `*CONFIRMAÇÃO DE PRESENÇA - CASAMENTO DELMA & ENOQUE*\n\n*Nome:* ${nome}\n*Dia confirmado:* ${dia}\n\nAguardo confirmação, obrigado!`;
+
+          window.open(
+            `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(textoCompleto)}`,
+            "_blank"
+          );
+        }
+
+        if (btnSabado) {
+          btnSabado.addEventListener("click", function (e) {
+            e.preventDefault();
+            enviarConfirmacao("Sábado, 08/08/2026");
+          });
+        }
+
+        if (btnDomingo) {
+          btnDomingo.addEventListener("click", function (e) {
+            e.preventDefault();
+            enviarConfirmacao("Domingo, 09/08/2026");
+          });
+        }
       }
 
       // ========== ANIMAÇÃO AO ROLAR ==========
