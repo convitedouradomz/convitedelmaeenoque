@@ -3164,8 +3164,9 @@ footer {
         iniciarContadorRegressivo();
         configurarNavegacao();
         configurarBotaoTopo();
-        configurarMensagens(); // ← Agora o db já existe
+     configurarMensagens(); // ← Agora o db já existe
         configurarModal();
+        configurarConfirmacaoPresenca();
         setupBotoesPresentes();
         inicializarPresentes();
         carregarPresentesFirebase();
@@ -3328,7 +3329,7 @@ footer {
 
       // ========== CONFIRMAÇÃO DE PRESENÇA (RSVP) ==========
       function configurarConfirmacaoPresenca() {
-        const numeroWhatsapp = "258842109579"; // Número que recebe as confirmações
+        const numeroWhatsapp = "258864317870"; // Número que recebe as confirmações
         const nomeInput = document.getElementById("nome-convidado");
         const btnSabado = document.getElementById("btnWhatsappSabado");
         const btnDomingo = document.getElementById("btnWhatsappDomingo");
