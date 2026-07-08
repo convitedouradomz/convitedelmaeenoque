@@ -3216,7 +3216,16 @@ footer {
         const heroSection = document.querySelector(".hero-section");
         const scrollIndicator = document.querySelector(".scroll-indicator");
 
-        setaAbrir.addEventListener("click", function () {
+setaAbrir.addEventListener("click", function () {
+          // Tocar música IMEDIATAMENTE no clique, antes de qualquer atraso
+          // (Android bloqueia o som se a chamada não for síncrona com o clique)
+          const audio = document.getElementById("musica-fundo");
+          if (audio) {
+            audio.play().catch(() => {
+              console.log("Não foi possível iniciar a música automaticamente.");
+            });
+          }
+
           heroSection.style.opacity = "0";
           heroSection.style.transition = "opacity 0.8s ease";
 
@@ -3243,7 +3252,6 @@ footer {
             observarElementos();
           }, 800);
         });
-      }
 
       // ========== CONTADOR REGRESSIVO ==========
       function iniciarContadorRegressivo() {
@@ -3328,13 +3336,14 @@ footer {
       }
 
       // ========== CONFIRMAÇÃO DE PRESENÇA (RSVP) ==========
-      function configurarConfirmacaoPresenca() {
-        const numeroWhatsapp = "258864317870"; // Número que recebe as confirmações
+function configurarConfirmacaoPresenca() {
+        const numeroSabado = "258842705121";
+        const numeroDomingo = "258848288177";
         const nomeInput = document.getElementById("nome-convidado");
         const btnSabado = document.getElementById("btnWhatsappSabado");
         const btnDomingo = document.getElementById("btnWhatsappDomingo");
 
-        function enviarConfirmacao(dia) {
+        function enviarConfirmacao(dia, numero) {
           const nome = nomeInput ? nomeInput.value.trim() : "";
 
           if (!nome) {
@@ -3346,7 +3355,7 @@ footer {
           const textoCompleto = `*CONFIRMAÇÃO DE PRESENÇA - CASAMENTO DELMA & ENOQUE*\n\n*Nome:* ${nome}\n*Dia confirmado:* ${dia}\n\nAguardo confirmação, obrigado!`;
 
           window.open(
-            `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(textoCompleto)}`,
+            `https://wa.me/${numero}?text=${encodeURIComponent(textoCompleto)}`,
             "_blank"
           );
         }
@@ -3354,14 +3363,14 @@ footer {
         if (btnSabado) {
           btnSabado.addEventListener("click", function (e) {
             e.preventDefault();
-            enviarConfirmacao("Sábado, 08/08/2026");
+            enviarConfirmacao("Sábado, 08/08/2026", numeroSabado);
           });
         }
 
         if (btnDomingo) {
           btnDomingo.addEventListener("click", function (e) {
             e.preventDefault();
-            enviarConfirmacao("Domingo, 09/08/2026");
+            enviarConfirmacao("Domingo, 09/08/2026", numeroDomingo);
           });
         }
       }
